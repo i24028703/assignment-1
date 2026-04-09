@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Guangzhou | City of Light and Flavor</title>
+  <style>
+    :root {
+      --midnight: #0F1C2E;
+      --city-blue: #1F3A5F;
+      --neon-purple: #7A5CFF;
+      --warm-gold: #F2B880;
+      --mist-white: #F5F5F5;
+      --card-bg: rgba(255, 255, 255, 0.06);
+      --line: rgba(255, 255, 255, 0.12);
+      --text-soft: rgba(245, 245, 245, 0.82);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(122, 92, 255, 0.15), transparent 28%),
+        radial-gradient(circle at bottom right, rgba(242, 184, 128, 0.12), transparent 22%),
+        linear-gradient(180deg, var(--midnight) 0%, #13233b 45%, var(--city-blue) 100%);
+      color: var(--mist-white);
+      line-height: 1.7;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1120px, 90%);
+      margin: 0 auto;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(15, 28, 46, 0.72);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      min-height: 72px;
+    }
+
+    .brand {
+      font-size: 1rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .brand span {
+      color: var(--warm-gold);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.4rem;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      font-size: 0.92rem;
+      color: rgba(245, 245, 245, 0.82);
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--warm-gold);
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(120deg, rgba(15, 28, 46, 0.85), rgba(31, 58, 95, 0.45)),
+        url("images/1.jpg") center/cover no-repeat;
+      z-index: -2;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 20% 30%, rgba(122, 92, 255, 0.2), transparent 18%),
+        radial-gradient(circle at 85% 25%, rgba(242, 184, 128, 0.16), transparent 14%);
+      z-index: -1;
+    }
+
+    .hero-content {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 2.2rem;
+      align-items: end;
+      padding: 7rem 0 4rem;
+    }
+
+    .hero-copy .eyebrow {
+      display: inline-block;
+      text-transform: uppercase;
+      letter-spacing: 0.24em;
+      color: rgba(245, 245, 245, 0.72);
+      font-size: 0.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero-copy h1 {
+      font-size: clamp(2.8rem, 6vw, 5.8rem);
+      line-height: 0.95;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+      text-shadow: 0 0 28px rgba(122, 92, 255, 0.2);
+    }
+
+    .hero-copy p {
+      max-width: 620px;
+      color: var(--text-soft);
+      font-size: 1.06rem;
+      margin-bottom: 2rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn,
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.95rem 1.5rem;
+      border-radius: 999px;
+      font-size: 0.95rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: 0.3s ease;
+    }
+
+    .btn {
+      background: linear-gradient(135deg, var(--neon-purple), #6b88ff);
+      color: white;
+      box-shadow: 0 0 24px rgba(122, 92, 255, 0.25);
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 0 28px rgba(122, 92, 255, 0.35);
+    }
+
+    .btn-outline {
+      border: 1px solid rgba(242, 184, 128, 0.7);
+      background: rgba(255,255,255,0.05);
+      color: var(--mist-white);
+    }
+
+    .btn-outline:hover {
+      transform: translateY(-3px);
+      background: rgba(255,255,255,0.09);
+    }
+
+    .hero-card {
+      padding: 1.4rem;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(16px);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+    }
+
+    .hero-card h2 {
+      font-size: 1rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--warm-gold);
+      margin-bottom: 0.9rem;
+    }
+
+    .hero-card ul {
+      list-style: none;
+      display: grid;
+      gap: 0.8rem;
+    }
+
+    .hero-card li {
+      color: rgba(245, 245, 245, 0.88);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      padding-bottom: 0.75rem;
+    }
+
+    .hero-card li:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .section {
+      padding: 6rem 0;
+    }
+
+    .section-head {
+      margin-bottom: 2.2rem;
+      max-width: 760px;
+    }
+
+    .section-head .tag {
+      display: inline-block;
+      color: var(--warm-gold);
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      font-size: 0.78rem;
+      margin-bottom: 0.9rem;
+    }
+
+    .section-head h2 {
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      line-height: 1.05;
+      margin-bottom: 0.9rem;
+    }
+
+    .section-head p {
+      color: var(--text-soft);
+      font-size: 1rem;
+      max-width: 700px;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .split.reverse {
+      grid-template-columns: 0.95fr 1.05fr;
+    }
+
+    .media-card,
+    .text-card,
+    .mini-card {
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      overflow: hidden;
+      background: var(--card-bg);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 18px 36px rgba(0, 0, 0, 0.16);
+    }
+
+    .media-card img {
+      width: 100%;
+      height: 100%;
+      min-height: 420px;
+      object-fit: cover;
+    }
+
+    .text-card {
+      padding: 2rem;
+    }
+
+    .text-card h3 {
+      font-size: 1.7rem;
+      margin-bottom: 1rem;
+    }
+
+    .text-card p {
+      color: var(--text-soft);
+      margin-bottom: 1rem;
+    }
+
+    .highlight-line {
+      display: inline-block;
+      margin-top: 0.4rem;
+      color: var(--warm-gold);
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+
+    .history-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.4rem;
+      margin-top: 2rem;
+    }
+
+    .mini-card img {
+      height: 240px;
+      object-fit: cover;
+    }
+
+    .mini-card .mini-body {
+      padding: 1.3rem;
+    }
+
+    .mini-card h4 {
+      font-size: 1.2rem;
+      margin-bottom: 0.65rem;
+    }
+
+    .mini-card p {
+      color: var(--text-soft);
+      font-size: 0.96rem;
+    }
+
+    .food-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: stretch;
+    }
+
+    .food-list {
+      display: grid;
+      gap: 1rem;
+      margin-top: 1.2rem;
+    }
+
+    .food-item {
+      padding: 1rem 1.1rem;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.04);
+    }
+
+    .food-item strong {
+      display: block;
+      color: var(--warm-gold);
+      margin-bottom: 0.35rem;
+      font-size: 0.98rem;
+      letter-spacing: 0.03em;
+    }
+
+    .footer-banner {
+      margin: 0 auto 5rem;
+      width: min(1120px, 90%);
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      overflow: hidden;
+      position: relative;
+      background:
+        linear-gradient(120deg, rgba(15,28,46,0.92), rgba(31,58,95,0.75)),
+        url("images/6.jpg") center/cover no-repeat;
+      min-height: 320px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 2rem;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.16);
+    }
+
+    .footer-banner h2 {
+      font-size: clamp(2.1rem, 4vw, 4rem);
+      margin-bottom: 0.8rem;
+      text-transform: uppercase;
+    }
+
+    .footer-banner p {
+      max-width: 640px;
+      color: rgba(245,245,245,0.86);
+      font-size: 1rem;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .reveal.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 960px) {
+      .hero-content,
+      .split,
+      .split.reverse,
+      .food-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-content {
+        padding-top: 6.4rem;
+      }
+
+      .hero-card {
+        max-width: 560px;
+      }
+
+      .media-card img {
+        min-height: 340px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        width: 92%;
+      }
+
+      .nav {
+        min-height: 64px;
+        align-items: flex-start;
+        padding: 0.9rem 0;
+        flex-direction: column;
+      }
+
+      .nav-links {
+        gap: 0.9rem 1.1rem;
+      }
+
+      .hero {
+        min-height: 92vh;
+      }
+
+      .hero-copy h1 {
+        font-size: clamp(2.3rem, 12vw, 3.7rem);
+      }
+
+      .hero-copy p,
+      .section-head p,
+      .text-card p,
+      .mini-card p,
+      .footer-banner p {
+        font-size: 0.97rem;
+      }
+
+      .section {
+        padding: 4.5rem 0;
+      }
+
+      .text-card {
+        padding: 1.4rem;
+      }
+
+      .history-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .mini-card img {
+        height: 220px;
+      }
+
+      .btn,
+      .btn-outline {
+        width: 100%;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="#top">Glow<span>Guangzhou</span></a>
+      <nav class="nav-links">
+        <a href="#about">About</a>
+        <a href="#history">History</a>
+        <a href="#modern">Nightscape</a>
+        <a href="#food">Food</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-content">
+        <div class="hero-copy reveal">
+          <div class="eyebrow">City of Light and Flavor</div>
+          <h1>Guangzhou</h1>
+          <p>
+            From historic streets and riverside lights to timeless Cantonese cuisine, Guangzhou is a city where tradition and modern life move side by side.
+          </p>
+          <div class="hero-actions">
+            <a href="#about" class="btn">Explore the City</a>
+            <a href="index.html" class="btn-outline">Back to Opening</a>
+          </div>
+        </div>
+
+        <aside class="hero-card reveal">
+          <h2>Why Visit</h2>
+          <ul>
+            <li>Walk through heritage-filled streets shaped by over two thousand years of history.</li>
+            <li>See a skyline that glows above the Pearl River after sunset.</li>
+            <li>Taste the city through dim sum, roasted specialties, and classic desserts.</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="tag">01 / City Impression</div>
+          <h2>Where old streets and modern towers share the same skyline</h2>
+          <p>
+            Guangzhou is a city of contrast. Arcaded streets, glowing riverside views, and fast-moving urban life come together in a place that feels both deeply rooted and constantly evolving.
+          </p>
+        </div>
+
+        <div class="split">
+          <div class="media-card reveal">
+            <img src="images/2.jpg" alt="Guangzhou skyline and river view at dusk" />
+          </div>
+          <div class="text-card reveal">
+            <h3>A city shaped by movement, memory, and light</h3>
+            <p>
+              Guangzhou welcomes visitors with a rare balance of energy and atmosphere. During the day, the city feels layered with daily life, commerce, and long-standing local traditions. By night, it becomes brighter and more cinematic, with reflections stretching across the Pearl River.
+            </p>
+            <p>
+              What makes Guangzhou memorable is not only its landmarks, but also the way its streets feel alive. Traditional architecture, local flavors, and a strong modern skyline all exist within the same urban rhythm.
+            </p>
+            <span class="highlight-line">Pearl River • Lingnan Culture • Contemporary City Life</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="history">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="tag">02 / Culture & History</div>
+          <h2>A heritage city with craftsmanship, elegance, and quiet charm</h2>
+          <p>
+            Guangzhou’s cultural character lives through its architecture, decorative arts, and historic districts. The city preserves a strong sense of place while remaining open, layered, and walkable for visitors.
+          </p>
+        </div>
+
+        <div class="history-grid">
+          <article class="mini-card reveal">
+            <img src="images/3.jpg" alt="Traditional architecture details at Chen Clan Ancestral Hall in Guangzhou" />
+            <div class="mini-body">
+              <h4>Chen Clan Ancestral Hall</h4>
+              <p>
+                One of the most iconic cultural landmarks in Guangzhou, the Chen Clan Ancestral Hall showcases the beauty of Lingnan craftsmanship through intricate wood carving, stone carving, and decorative roof art.
+              </p>
+            </div>
+          </article>
+
+          <article class="mini-card reveal">
+            <img src="images/4.jpg" alt="Tree-lined European style street scene on Shamian Island in Guangzhou" />
+            <div class="mini-body">
+              <h4>Shamian Island</h4>
+              <p>
+                With quiet boulevards, colonial-era buildings, and a slower atmosphere, Shamian Island offers a different side of Guangzhou. It feels peaceful, elegant, and especially appealing for walking and photography.
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="modern">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="tag">03 / Nightscape</div>
+          <h2>When the city lights up, Guangzhou becomes a spectacle</h2>
+          <p>
+            Modern Guangzhou is best experienced after dark. Across the river, towers glow with color, bridges shimmer with reflections, and the skyline takes on a distinctly futuristic energy.
+          </p>
+        </div>
+
+        <div class="split reverse">
+          <div class="text-card reveal">
+            <h3>The pulse of the modern city</h3>
+            <p>
+              At the heart of the skyline stands Canton Tower, one of Guangzhou’s most recognizable landmarks. Its elegant form and illuminated structure turn it into a symbol of the city’s contemporary identity.
+            </p>
+            <p>
+              Nearby riverside spaces and cruise routes offer some of the best night views in the city. Together, they create an atmosphere that feels vibrant, polished, and unmistakably urban.
+            </p>
+            <span class="highlight-line">Canton Tower • Pearl River Night View • Urban Glow</span>
+          </div>
+
+          <div class="media-card reveal">
+            <img src="images/5.jpg" alt="Guangzhou Tower and modern city skyline glowing at night" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="food">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="tag">04 / Food</div>
+          <h2>A city best understood through its table</h2>
+          <p>
+            In Guangzhou, food is not just part of travel — it is part of the city’s identity. Local dining culture is built on freshness, balance, and the shared pleasure of gathering around traditional dishes.
+          </p>
+        </div>
+
+        <div class="food-grid">
+          <div class="media-card reveal">
+            <img src="images/6.jpg" alt="Cantonese dim sum and traditional Guangzhou dishes on a dining table" />
+          </div>
+
+          <div class="text-card reveal">
+            <h3>The taste of Guangzhou</h3>
+            <p>
+              Cantonese cuisine is famous for its refinement, and Guangzhou remains one of the best places to experience it. Morning tea culture, carefully prepared roast meats, and classic desserts all reflect the city’s culinary heritage.
+            </p>
+            <div class="food-list">
+              <div class="food-item">
+                <strong>Dim Sum</strong>
+                Delicate, social, and deeply rooted in local tradition — a signature dining experience of the city.
+              </div>
+              <div class="food-item">
+                <strong>Roasted Specialties</strong>
+                Char siu and roast goose bring rich flavor and visual appeal to the Cantonese table.
+              </div>
+              <div class="food-item">
+                <strong>Traditional Desserts</strong>
+                Sweet soups and milk-based desserts add a softer, comforting finish to the journey.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="footer-banner reveal">
+      <div>
+        <h2>Discover Guangzhou</h2>
+        <p>
+          A city of history, light, and unforgettable flavor — waiting to be explored from day to night.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("show");
+        }
+      });
+    }, {
+      threshold: 0.15
+    });
+
+    document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+  </script>
+</body>
+</html>
